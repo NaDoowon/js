@@ -1,0 +1,70 @@
+<mvc:View controllerName="projectb0704.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table"
+    displayBlock="true">
+    <Page id="page" title="{i18n>title}">
+        <content >
+    	<t:Table 
+				id="idTable"
+				rows="{/list}"
+				selectionMode="MultiToggle"
+				visibleRowCount="7"
+				rowActionCount="1"
+				paste="onPaste"
+				ariaLabelledBy="title">
+				<t:extension>
+					<OverflowToolbar style="Clear">
+						<Title id="title" text="Products"/>
+                        <ToolbarSpacer />
+                        <Button text="Add" icon="sap-icon://add" press="onAdd"/>
+                        <Button text="Delete" icon="sap-icon://delete" press="onDelete"/>
+					</OverflowToolbar>
+				</t:extension>
+
+				<t:columns>
+					<t:Column >
+						<!-- <Label text="Name" /> -->
+						<t:template>
+                        <Input id='input1' value='{name}'/>
+							<!-- <Text text="{main>name}" wrapping="false" /> -->
+						</t:template>
+					</t:Column>
+                
+					<t:Column >
+						<!-- <Label text="Address" /> -->
+						<t:template>
+                        <Input id='input2' value='{address}'/>
+							<!-- <Text text="{main>address}" wrapping="false" /> -->
+						</t:template>
+					</t:Column>
+            
+					<t:Column >
+						<!-- <Label text="Phone" /> -->
+						<t:template>
+                        <Input id='input3' value='{phone}'/>
+							<!-- <Text text="{main>phone}" wrapping="false" /> -->
+						</t:template>
+					</t:Column>
+             
+					<t:Column >
+						<!-- <Label text="Department" /> -->
+						<t:template>
+                        <Input id='input4' value='{department}'/>
+							<!-- <Text text="{main>department}" wrapping="false" /> -->
+						</t:template>
+					</t:Column>
+                </t:columns>
+
+				<t:rowActionTemplate>
+					<t:RowAction >
+						<t:items>
+							<t:RowActionItem type="Delete" press="onRowActionDelete"/>
+						</t:items>
+					</t:RowAction>
+				</t:rowActionTemplate>
+
+			</t:Table>
+        </content>
+    </Page>
+</mvc:View>

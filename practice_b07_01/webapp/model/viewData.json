@@ -1,0 +1,21 @@
+{
+  "ProductionCollection": [
+    {
+      "ProductId": "PLUS",
+      "Name": "+"
+    },
+    {
+      "ProductId": "MINUS",
+      "Name": "-"
+    },
+    {
+      "ProductId": "MULTIPLE",
+      "Name": "*"
+    },
+    {
+      "ProductId": "DIVISION",
+      "Name": "/"
+    }
+  ],
+  "ProductionCollection2": []
+}

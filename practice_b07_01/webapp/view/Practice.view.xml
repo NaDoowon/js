@@ -1,0 +1,91 @@
+<mvc:View controllerName="practiceb0701.controller.Practice"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table"
+    xmlns:core="sap.ui.core">
+    <Page id="page" title="{i18n>title}">
+        <content >
+      
+            <FlexBox height="200px" justifyContent="Center" alignItems="Start" >
+                <VBox >
+                    <Input id="X" />
+                    <Select 
+                        id="idSel"
+                        width="100%" 
+                        selectedKey="{/SelectedProduct}"
+						showSecondaryValues="true"
+                        items="{path: '/ProductionCollection'}">
+                            <core:ListItem 
+								key="{ProductId}" text="{Name}"
+								additionalText="{ProductId}" />
+                    </Select>
+                    <Input id="Y" />
+                    <Button id="Btn" text="Result" press="onClick" />
+                     <Text id="Result" />
+                </VBox>
+            </FlexBox>
+          
+                    <t:Table
+                id="idTable"
+				rows="{/ProductionCollection2}"
+				selectionMode="MultiToggle"
+				visibleRowCount="7"
+				paste="onPaste"
+				ariaLabelledBy="title">
+				<t:extension>
+					<OverflowToolbar style="Clear">
+						<Title id="title" text="Result"/>
+                        <ToolbarSpacer />
+                        <Button text="Delete" icon="sap-icon://delete" press="onDelete"/>
+
+					</OverflowToolbar>
+                    
+				</t:extension>
+				<t:columns>
+					<t:Column >
+						<Label text="Number1" />
+						<t:template>
+							<Text text="{num1}" wrapping="false" />
+						</t:template>
+					</t:Column>
+
+                    <t:Column >
+						<Label text="Operator" />
+						<t:template>
+							<Text text="{operator}" wrapping="false" />
+						</t:template>
+					</t:Column>
+
+                    <t:Column >
+						<Label text="Number2" />
+						<t:template>
+							<Text text="{num2}" wrapping="false" />
+						</t:template>
+					</t:Column>
+
+                    <t:Column >
+						<Label text="Result" />
+						<t:template>
+							<Text text="{result}" wrapping="false" />
+						</t:template>
+					</t:Column>
+					
+				</t:columns>
+			</t:Table>
+                <Button text="Open Dialog" press="onOpenDialog" />
+				<Button text="Dialog in View" press="onOpenDialog2" />
+					 <Dialog id="idDialogView" title="Dialog in View"
+            			    contentHeight="50%"
+           					 contentWidth="40%"> 
+        				<content>
+         				   <Text text="Veiw 안에 있는 팝업 오픈" />
+     				    </content>
+      				    <endButton>
+            				<Button text="Close" press="onClose" />
+       					 </endButton>
+    				</Dialog>
+        </content>
+    </Page>
+</mvc:View>
+
+

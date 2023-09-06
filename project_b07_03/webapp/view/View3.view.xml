@@ -1,0 +1,133 @@
+<mvc:View 
+    controllerName="projectb0703.controller.View3"
+    xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+	xmlns:t="sap.ui.table"
+	displayBlock="true">
+    <Page id="page" title="계산기" floatingFooter="false">
+		<content >
+			<VBox >
+				<Panel headerText="{main>/name} {main>/title} {main>/list/0/phone} {main>/list/0/address} {main>/list/0/epost} {main>/age}" >
+					<FlexBox
+						height="200px"
+						alignItems="Start"
+						justifyContent="Center">
+			
+							<VBox >
+								<!-- <Text text="{main>/name}" />
+								<Text text="{main>/title}" />
+								<Text text="{main>/age}" />
+
+								<Text text="{main>/list/0/phone}" />
+								<Text text="{main>/list/0/address}" />
+								<Text text="{main>/list/0/epost}" />
+
+								<Text text="{main>/list/1/phone}" />
+								<Text text="{main>/list/1/address}" />
+								<Text text="{main>/list/1/epost}" />
+
+								<Text text="{main>/list/2/phone}" />
+								<Text text="{main>/list/2/address}" />
+								<Text text="{main>/list/2/epost}" /> -->
+								<Input id="idInput1" />
+								<Select id="idSelect" width="100%" selectedKey="{/SelectedProduct}">
+									<items>
+										<core:Item key="PLUS" text="+" />
+										<core:Item key="MINUS" text="-" />
+										<core:Item key="MULTIPLE" text="*" />
+										<core:Item key="DIVISION" text="/" />
+									</items>
+								</Select>
+
+								<Input id="idInput2" change="onChange"/>
+								<Button id="Button" text="Calculation" type="Emphasized" press="onClick" />
+								<Text id="idText" />
+							</VBox>
+
+					</FlexBox>
+				</Panel>
+
+				<t:Table
+				rows="{main>/list}"
+				selectionMode="None"
+				visibleRowCount="9"
+				paste="onPaste"
+				ariaLabelledBy="title">
+				<t:extension>
+					<OverflowToolbar style="Clear">
+						<Title id="title" text="Information"/>
+					</OverflowToolbar>
+				</t:extension>
+				<t:columns>
+					<t:Column>
+						<Label text="Number 1" />
+						<t:template>
+							<Text text="{main>num1} " wrapping="false" />
+							
+						</t:template>
+					</t:Column>
+				
+				</t:columns>
+
+						<t:columns>
+					<t:Column >
+						<Label text="Operator" />
+						<t:template>
+							<Text text="{main>operator} " wrapping="false" />
+							
+						</t:template>
+					</t:Column>
+				</t:columns>
+
+						<t:columns>
+					<t:Column >
+						<Label text="Number 2" />
+						<t:template>
+							<Text text="{main>num2} " wrapping="false" />
+							
+						</t:template>
+					</t:Column>
+				</t:columns>
+
+				<t:columns>
+					<t:Column >
+						<Label text="Result" />
+						<t:template>
+							<Text text="{main>result} " wrapping="false" />
+							
+						</t:template>
+					</t:Column>
+				</t:columns>
+
+				<!-- <t:columns>
+					<t:Column >
+						<Label text="Button" />
+						<t:template>
+							<Button text="Button" />
+							
+						</t:template>
+					</t:Column>
+				</t:columns> -->
+				
+					<!-- <t:columns>
+					<t:Column width="18rem">
+						<Label text="INfo" />
+						<t:template>
+							<Input value="{main>phone} {main>address}" />
+							
+						</t:template>
+					</t:Column>
+				</t:columns> -->
+
+			</t:Table>
+
+			</VBox>
+		</content>
+    </Page>
+</mvc:View>
+
+
+		
+
+

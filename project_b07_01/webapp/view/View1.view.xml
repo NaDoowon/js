@@ -1,0 +1,41 @@
+<mvc:View xmlns:t="sap.ui.table" 
+controllerName="projectb0701.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+    displayBlock = "true">
+
+    <Page id="page" title="타이틀" floatingFooter="false">
+
+    <VBox >
+<!-- //onClick > controller 안에서 찾음 -->
+    <Button text="MyButton" type="Emphasized" press="onClick"/>
+
+    <Text id="idText" text="hello~~~~~~~" />
+    <!-- <Input maxLength="20" ></Input> -->
+    <Input id="idInput" value="집가고싶다" ></Input>
+    </VBox>
+
+<t:Table
+				rows="{/ProductCollection}"
+				selectionMode="MultiToggle"
+				visibleRowCount="7"
+				paste="onPaste"
+				ariaLabelledBy="title">
+
+				<t:extension>
+					<OverflowToolbar style="Clear">
+						<Title id="title" text="Products"/>
+					</OverflowToolbar>
+				</t:extension>
+				<t:columns>
+					<t:Column width="11rem">
+						<Label text="Product Name" />
+						<t:template>
+							<Text text="{Name}" wrapping="false" />
+						</t:template>
+					</t:Column>
+</t:columns>
+			</t:Table>
+
+    </Page>
+</mvc:View>
