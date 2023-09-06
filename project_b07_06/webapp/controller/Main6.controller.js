@@ -26,7 +26,7 @@ sap.ui.define(
         //   });
         // } else {
         //   oDialog.open();
-        // }
+        // }aaaa
 
         // view에 바로붙임 (this 사용)
         var oDialog = this.byId("idDialog");

@@ -66,8 +66,8 @@
                     <t:Column >
 						<Label text="Result" />
 						<t:template>
-							<Text text="{result}" wrapping="false" />
-						</t:template>
+							<Text text="{result}" wrapping="false" />    
+						</t:template> 
 					</t:Column>
 					
 				</t:columns>
