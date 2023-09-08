@@ -1,0 +1,12 @@
+<mvc:View controllerName="projectb0706.controller.Detail"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout">
+    <Page title="Detail Page" 
+            showNavButton="true"
+            navButtonPress="onNavMain"
+            >
+    </Page>
+
+</mvc:View>

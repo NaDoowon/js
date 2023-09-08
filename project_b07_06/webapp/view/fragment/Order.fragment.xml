@@ -4,15 +4,34 @@
     xmlns:t="sap.ui.table">
 
     <Dialog id="idDialog" title="Value Help"
+            beforeOpen="onBeforeOpen"
+            resizable="true"
+            draggable="true"
             contentHeight="50%"
             contentWidth="40%">  <!-- 사이즈 단위 : px or rem or em -->
         <content>
+        <!-- path : 조건 줄곳(필터 객체) / operator : 비교연산 / value : 값 -->
            <t:Table 
-                rows="{/Orders}"
+                id="idOrderTable"
+                rows= "{/Orders}"
                 selectionMode="MultiToggle"
                 visibleRowCount="7"
                 paste="onPaste"
                 ariaLabelledBy="title">
+                <!-- rows="{ 
+                    path : '/Orders',
+                    filters : [{
+                        path : 'EmployeeID', 
+                        operator : 'GE',
+                        value1 : 4,
+                        value2 : ''
+                    },{
+                        path : 'CustomerID', 
+                        operator : 'Contains',
+                        value1 : 'R',
+                        value2 : ''
+                    }]
+                       }" -->
            <t:extension>
             <OverflowToolbar style="Clear" >
                 <Title id="title" text="Order Id Value Help"/>

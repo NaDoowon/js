@@ -11,7 +11,10 @@
 					<f:heading>
 						<Title text="Northwind"/>
 					</f:heading>
-					
+					<f:actions>
+						<Button text="Search" type="Emphasized" press="OnSearch"/>
+						<Button text="Detail" type="Emphasized" press="OnNavDetail"/>
+					</f:actions>
 				</f:DynamicPageTitle>
 			</f:title>
 
@@ -21,7 +24,7 @@
 					<layout:HorizontalLayout allowWrapping="true">
 						<layout:VerticalLayout class="sapUiMediumMarginEnd">
 							<Label text="Order ID" />
-							<Input  showValueHelp="true" valueHelpRequest="onValueHelp"/>
+							<Input  id="idInput" showValueHelp="true" valueHelpRequest="onValueHelp"/>
 
 						</layout:VerticalLayout>
 
