@@ -12,6 +12,16 @@ sap.ui.define(
     "use strict";
 
     return Controller.extend("projectb0706.controller.Main6", {
+      formatter: {
+        fnDateString: function (oDate) {
+          // return oDate.getFullYear() + "-" + (oDate.getMonth() + 1) + "-" + oDate.getDate();
+          let oDateTimeInstance =
+            sap.ui.core.format.DateFormat.getDateTimeInstance({
+              pattern: "yyyy-MM-dd",
+            });
+          return oDateTimeInstance.format(oDate);
+        },
+      },
       onInit: function () {},
 
       onValueHelp: function (oEvent) {
@@ -87,27 +97,113 @@ sap.ui.define(
         oTable.getBinding("rows").filter(aFilters);
       },
 
-      OnSearch: function () {
+      onSearch: function () {
+        debugger;
         var oTable = this.byId("idProductsTable");
         var oInput = this.byId("idInput").getValue();
-        var aFilters = [
-          new Filter({
-            path: "OrderID",
-            operator: "EQ",
-            value1: oInput,
-          }),
-        ];
-        oTable.getBinding("items").filter(aFilters);
+        var oInput2 = this.byId("idInput2").getValue();
+        var oInput3 = this.byId("inputDate");
+        var aFilters = [];
+
+        if (oInput) {
+          aFilters.push(
+            new Filter({
+              path: "OrderID",
+              operator: "EQ",
+              value1: oInput,
+              value2: "",
+            })
+          );
+        }
+        if (oInput2) {
+          aFilters.push(
+            new Filter({
+              path: "CustomerID",
+              operator: "EQ",
+              value1: oInput2,
+              value2: "",
+            })
+          );
+        }
+        if (oInput3.getDateValue() && oInput3.getSecondDateValue()) {
+          aFilters.push(
+            new Filter({
+              path: "OrderDate",
+              operator: "BT",
+              value1: oInput3.getDateValue(),
+              value2: oInput3.getSecondDateValue(),
+            })
+          );
+        }
+        oTable
+          .getBinding("items")
+          .filter((aFilters.length && aFilters) || undefined);
+
+        // var oFilter;
+        // if (oInput) {
+        //   oFilter = new Filter({
+        //     path: "OrderID",
+        //     operator: "EQ",
+        //     value1: oInput,
+        //   }),
+        // }
+
+        // oTable.getBinding("items").filter([oFilter]);
       },
-      OnNavDetail: function () {
+      onNavDetail: function () {
         //Detail.view.xml 화면으로 이동
-        debugger;
         var oRouter = this.getOwnerComponent().getRouter();
         // oRouter.navTO(/* 라우트 객체이름)
         oRouter.navTo("RouteDetail", {
           paramOrder: "OrderID",
           param2: "Option",
         });
+      },
+      onSelectionChange: function (oEvent) {
+        // Bindingcontext 에서 경로를 가져올 수 있다.
+        var sPath = oEvent.getParameters().listItem.getBindingContextPath();
+        var oModel = this.getView().getModel();
+        var oRouter = this.getOwnerComponent().getRouter();
+        var oItem = oModel.getProperty(sPath);
+
+        oRouter.navTo("RouteDetail", {
+          paramOrder: oItem.OrderID,
+        });
+        //oDataModel.getProperty(경로) 해서 한 건의 데이터 전체 가져오기
+        // 전체데이터.OrderID를 통해 OrderID 값을 얻을 수 있다.
+
+        // Detail 화면으로 이동
+        // 이동 시, 해당 ORderID를 필수 파라미터로 포함
+
+        // 테스트는 Detail 라우터의 URL에 OrderID 값이 잘 들어오는 지 확인
+      },
+
+      onValueHelp2: function (oEvent) {
+        var oDialog = sap.ui.getCore().byId("idDialog2");
+        var oModel = this.getView().getModel();
+        if (!oDialog) {
+          Fragment.load({
+            name: "projectb0706.view.fragment.CustomerID",
+            type: "XML",
+            controller: this,
+          }).then(function (oDialog) {
+            oDialog.setModel(oModel);
+            oDialog.open();
+          });
+        } else {
+          oDialog.open();
+        }
+      },
+      onBeforeOpen2: function () {
+        var oTable = sap.ui.getCore().byId("idOrderTable2");
+        var oFilter = [
+          new Filter({
+            path: "Country",
+            operator: FilterOperator.Contains, //"Contains"
+            value1: "G",
+          }),
+        ];
+        oTable.getBinding("rows").filter(oFilter);
       },
     });
   }

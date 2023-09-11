@@ -3,48 +3,28 @@
     xmlns="sap.m"
     xmlns:t="sap.ui.table">
 
-    <Dialog id="idDialog" title="Value Help"
-            beforeOpen="onBeforeOpen"
+    <Dialog id="idDialog2" title="Value Help"
+            beforeOpen="onBeforeOpen2"
             resizable="true"
             draggable="true"
             contentHeight="50%"
-            contentWidth="40%">  <!-- 사이즈 단위 : px or rem or em -->
+            contentWidth="60%"> 
         <content>
         <!-- path : 조건 줄곳(필터 객체) / operator : 비교연산 / value : 값 -->
            <t:Table 
-                id="idOrderTable"
-                rows= "{/Orders}"
+                id="idOrderTable2"
+                rows= "{/Customers}"
                 selectionMode="MultiToggle"
                 visibleRowCount="7"
                 paste="onPaste"
                 ariaLabelledBy="title">
-                <!-- rows="{ 
-                    path : '/Orders',
-                    filters : [{
-                        path : 'EmployeeID', 
-                        operator : 'GE',
-                        value1 : 4,
-                        value2 : ''
-                    },{
-                        path : 'CustomerID', 
-                        operator : 'Contains',
-                        value1 : 'R',
-                        value2 : ''
-                    }]
-                       }" -->
+    
            <t:extension>
             <OverflowToolbar style="Clear" >
-                <Title id="title" text="OrderID Value Help"/>
+                <Title id="title2" text="CustomerID Value Help"/>
             </OverflowToolbar>
            </t:extension>
             <t:columns>
-                <t:Column >
-                <Label text="OrderID" />
-                <t:template>
-                    <Text text="{OrderID}" wrapping="false" />
-                </t:template>
-                </t:Column>
-
                 <t:Column >
                 <Label text="CustomerID" />
                 <t:template>
@@ -53,9 +33,23 @@
                 </t:Column>
 
                 <t:Column >
-                <Label text="EmployeeID" />
+                <Label text="CompanyName" />
                 <t:template>
-                    <Text text="{EmployeeID}" wrapping="false" />
+                    <Text text="{CompanyName}" wrapping="false" />
+                </t:template>
+                </t:Column>
+
+                <t:Column >
+                <Label text="Country" />
+                <t:template>
+                    <Text text="{Country}" wrapping="false" />
+                </t:template>
+                </t:Column>
+
+                <t:Column >
+                <Label text="City" />
+                <t:template>
+                    <Text text="{City}" wrapping="false" />
                 </t:template>
                 </t:Column>
 

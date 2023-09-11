@@ -2,11 +2,66 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"
     xmlns:f="sap.f"
-    xmlns:layout="sap.ui.layout">
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+
     <Page title="Detail Page" 
             showNavButton="true"
-            navButtonPress="onNavMain"
-            >
+            navButtonPress="onNavMain" >
+    
+    <form:SimpleForm id="idSimpleForm" layout="ResponsiveGridLayout" title="Order Detail">
+            <form:content>
+                <Label text="OrderID" />
+                <Text id="name" text="{OrderID}" />
+
+                <Label text="CustomerID" />
+                <Text text="{CustomerID}" />
+               
+                <Label text="EmployeeID" />
+                <Text text="{EmployeeID}" />
+
+                <Label text="OrderDate" />
+                <Text text="{OrderDate}" />
+                <!-- 날짜형식 이런 포맷으로 바꿔라 -->
+                <Label text="RequiredDate" />
+                <Text text="{
+                    path : 'RequiredDate',
+                    type : 'sap.ui.model.type.Date',
+                    formatOptions : {
+                    pattern : 'yyyy-MM-dd'
+                    }
+                    }" />
+
+                <Label text="ShippedDate" />
+                <Text text="{ShippedDate}" />
+
+                <Label text="ShipVia" />
+                <Text text="{ShipVia}" />
+
+                <Label text="Freight" />
+                <Text text="{Freight}" />
+
+                <Label text="ShipName" />
+                <Text text="{ShipName}" />
+
+                <Label text="ShipAddress" />
+                <Text text="{ShipAddress}" />
+
+                <Label text="ShipCity" />
+                <Text text="{ShipCity}" />
+
+                <Label text="ShipRegion" />
+                <Text text="{ShipRegion}" />
+
+                <Label text="ShipPostalCode" />
+                <Text text="{ShipPostalCode}" />
+
+                <Label text="ShipCountry" />
+                <Text text="{ShipCountry}" />
+            </form:content>
+
+        </form:SimpleForm>
     </Page>
 
 </mvc:View>

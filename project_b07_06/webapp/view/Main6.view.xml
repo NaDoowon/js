@@ -2,7 +2,9 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"
     xmlns:f="sap.f"
-    xmlns:layout="sap.ui.layout">
+    xmlns:layout="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:fb="sap.ui.comp.filterbar">
     
             <f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}" toggleHeaderOnTitleClick="{/titleClickable}">
 			<!-- DynamicPage Title -->
@@ -12,8 +14,8 @@
 						<Title text="Northwind"/>
 					</f:heading>
 					<f:actions>
-						<Button text="Search" type="Emphasized" press="OnSearch"/>
-						<Button text="Detail" type="Emphasized" press="OnNavDetail"/>
+						<!-- <Button text="Search" type="Emphasized" press="onSearch"/>
+						<Button text="Detail" type="Emphasized" press="onNavDetail"/> -->
 					</f:actions>
 				</f:DynamicPageTitle>
 			</f:title>
@@ -21,7 +23,7 @@
 			<!-- DynamicPage Header -->
 			<f:header>
 				<f:DynamicPageHeader pinnable="true">
-					<layout:HorizontalLayout allowWrapping="true">
+					<!-- <layout:HorizontalLayout allowWrapping="true">
 						<layout:VerticalLayout class="sapUiMediumMarginEnd">
 							<Label text="Order ID" />
 							<Input  id="idInput" showValueHelp="true" valueHelpRequest="onValueHelp"/>
@@ -32,7 +34,32 @@
 							<ObjectAttribute title="Availability"/>
 							<ObjectStatus text="In Stock" state="Success" />
 						</layout:VerticalLayout>
-					</layout:HorizontalLayout>
+					</layout:HorizontalLayout> -->
+					<fb:FilterBar id="filterbar" persistencyKey="myPersKey" 
+								  useToolbar="false" search=".onSearch" 
+								  filterChange=".onFilterChange" afterVariantLoad=".onAfterVariantLoad">
+							<fb:filterGroupItems>
+								<fb:FilterGroupItem name="OrderID" label="OrderID" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input id="idInput" showValueHelp="true" valueHelpRequest="onValueHelp"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+								<fb:FilterGroupItem name="CustomerID" label="CustomerID" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<Input id="idInput2" showValueHelp="true" valueHelpRequest="onValueHelp2"/>
+									</fb:control>
+								</fb:FilterGroupItem>
+
+								<fb:FilterGroupItem name="OrderDate" label="OrderDate" groupName="Group1" visibleInFilterBar="true">
+									<fb:control>
+										<DateRangeSelection id="inputDate" displayFormat="yyyy-MM-dd" /> <!-- From~To-->
+										<!--valueFormat="yyyy-MM-dd"이란 것도 있음-->
+										<!--From~To가 아니라 단일 날짜 형태면 DatePicker 사용-->
+									</fb:control>
+								</fb:FilterGroupItem>
+							</fb:filterGroupItems>
+						</fb:FilterBar>
 				</f:DynamicPageHeader>
 			</f:header>
 
@@ -40,7 +67,9 @@
 				<Table id="idProductsTable"
 						sticky="HeaderToolbar,ColumnHeaders"
 						inset="false"
+						mode="SingleSelectMaster"
 						items="{/Orders}"
+						selectionChange="onSelectionChange"
 					   class="sapFDynamicPageAlignContent"
 					   width="auto">
 					<headerToolbar>
@@ -51,12 +80,12 @@
 					<columns>
 						<Column
 								width="12em">
-							<Text text="Product" />
+							<Text text="OrderID" />
 						</Column>
 
 						<Column
 								width="12em">
-							<Text text="CustomID" />
+							<Text text="CustomerID" />
 						</Column>
 
                         <Column
@@ -66,13 +95,28 @@
 
                         <Column
 								width="12em">
-							<Text text="OrderDate" />
+							<Text text="Qualified" />
 						</Column>
 
                         <Column
 								width="12em">
-							<Text text="RequiredDate" />
+							<Text text="EDIT" />
 						</Column>
+
+						<Column
+                        	 width="12em">
+                 		<Text text="ICON" />
+               			 </Column>
+
+                		<Column
+                      		  width="12em">
+                    	<Text text="OrderDate" />
+                		</Column>
+
+                		<Column
+                      	  	width="12em">
+                  	  	<Text text="RequiredDate" />
+               			 </Column>
 
                         <Column
 								width="12em">
@@ -83,14 +127,26 @@
 
 					</columns>
 					<items>
-						<ColumnListItem>
+						<ColumnListItem >
 							<cells>
 								<Text text="{OrderID}" />
 								<Text text="{CustomerID}" />
 								<Text text="{EmployeeID}" />
-								<Text text="{OrderDate}" />
-								<Text text="{RequiredDate}" />
-								<Text text="{ShippedDate}" />
+								<Text text="{= ${EmployeeID} > 3 ? 'YES' : 'NO'}" />
+								 <Input enabled="{= 
+                            ${EmployeeID} > 3 ? false : true
+                        }" />
+                        <core:Icon src="sap-icon://accept"></core:Icon>
+                        <Text text="{
+                            path: 'OrderDate',
+                            formatter: '.formatter.fnDateString'}" />
+                        <Text text="{
+                            path: 'RequiredDate',
+                            formatter: '.formatter.fnDateString'}" />
+                        <Text text="{
+                            path: 'ShippedDate',
+                            formatter: '.formatter.fnDateString'}" />
+							
 							</cells>
 						</ColumnListItem>
 					</items>
