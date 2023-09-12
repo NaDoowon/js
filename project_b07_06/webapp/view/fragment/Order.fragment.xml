@@ -14,10 +14,11 @@
            <t:Table 
                 id="idOrderTable"
                 rows= "{/Orders}"
-                selectionMode="MultiToggle"
+                selectionMode="Single"
                 visibleRowCount="7"
                 paste="onPaste"
-                ariaLabelledBy="title">
+                ariaLabelledBy="title"
+                rowSelectionChange="onSelect">
                 <!-- rows="{ 
                     path : '/Orders',
                     filters : [{

@@ -205,6 +205,24 @@ sap.ui.define(
         ];
         oTable.getBinding("rows").filter(oFilter);
       },
+      onSelect: function (oEvent) {
+        let oSel = oEvent.getParameters().rowContext.getObject().OrderID;
+
+        this.byId("idInput").setValue(oSel);
+
+        let oButton = oEvent.getSource();
+        let oDialog = oButton.getParent();
+        oDialog.close();
+      },
+      onSelect2: function (oEvent) {
+        let oSel = oEvent.getParameters().rowContext.getObject().CustomerID;
+
+        this.byId("idInput2").setValue(oSel);
+
+        let oButton = oEvent.getSource();
+        let oDialog = oButton.getParent();
+        oDialog.close();
+      },
     });
   }
 );
