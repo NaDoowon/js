@@ -15,7 +15,7 @@
                           vizProperties="{
                             'title' : { 'visible' : true, 'text' : 'Line Chart' },
                             'legendGroup' : { layout : {position : 'left'} },
-                            'plotArea' : { drawingEffect: 'glossy', colorPalette: ['#1312FF','#8C8C8C','#1DDB16'] }
+                            'plotArea' : { drawingEffect: 'glossy', colorPalette: ['#1312FF','#8C8C8C','#1DDB16'], dataLabel : { 'visible' : true  }}
                           }">
 
                 <viz:dataset> <!-- 데이터 세팅-->

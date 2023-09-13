@@ -40,6 +40,7 @@ sap.ui.define(
         this.getView().setModel(oModel);
       },
       onClick: function (oEvent) {
+        // debugger;
         var nNum1 = this.getView().byId("X").getValue(),
           nNum2 = this.byId("Y").getValue(),
           oSelect = this.byId("idSel"),
