@@ -67,6 +67,24 @@ sap.ui.define(
         var oDialog = oButton.getParent();
         oDialog.close();
       },
+      onValueChange: function (oEvent) {
+        let oSource = oEvent.getSource();
+        let oValue = Number(oSource.getValue());
+        let oModel = this.getView().getModel("list");
+        let oData = oModel.getProperty("/ranlist");
+
+        if (1 <= oValue && oValue <= 100) {
+          oSource.setValueState("None");
+          oData.push({
+            key: oValue,
+          });
+        } else {
+          oSource.setValueState("Error");
+          oSource.setValueStateText("Please enter a number between 1 and 100");
+        }
+        oModel.setProperty("/ranlist", oData);
+      },
+      onEnter: function (oEvent) {},
     });
   }
 );

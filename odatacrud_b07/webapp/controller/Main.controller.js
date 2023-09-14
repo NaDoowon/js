@@ -104,6 +104,7 @@ sap.ui.define(
           success: function () {
             sap.m.MessageToast.show("데이터 삭제 완료");
             oDataModel.refresh(true); // optional. 모델 리프레쉬
+            
           },
         });
       },

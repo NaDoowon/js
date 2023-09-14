@@ -206,8 +206,6 @@ sap.ui.define(
         oTable.getBinding("rows").filter(oFilter);
       },
       onSelect: function (oEvent) {
-        let oSel = oEvent.getParameters().rowContext.getObject().OrderID;
-
         this.byId("idInput").setValue(oSel);
 
         let oButton = oEvent.getSource();
