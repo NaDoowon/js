@@ -1,0 +1,100 @@
+<c:FragmentDefinition 
+    xmlns:c="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:t="sap.ui.table"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:l="sap.ui.layout">
+
+    <Dialog id="idDialog" title="Carrname"
+            contentHeight="70%"
+            contentWidth="100%">
+            <VBox>
+            <t:Table
+                rows="{
+                    path: '/carrierSet',
+                    parameters: {
+                        'expand' : 'to_Item'
+                    }
+                    }"
+                selectionMode="None"
+                visibleRowCount="10"
+                paste="onPaste"
+                ariaLabelledBy="title"
+                width="50%">
+                <t:extension>
+                    <OverflowToolbar style="Clear">
+                        <Title id="title" text="{Carrname}"/>
+                    </OverflowToolbar>
+                </t:extension>
+                <t:columns>
+                    <t:Column hAlign="End">
+                        <Label text="Carrid" />
+                        <t:template>
+                            <Text text="{Carrid}"/>
+                        </t:template>
+                    </t:Column>
+
+                    <t:Column >
+                        <Label text="Connid"/>
+                        <t:template>
+                            <Text text="{Connid}"  />
+                        </t:template>
+                    </t:Column>
+
+                     <t:Column >
+                        <Label text="Seatsmax"/>
+                        <t:template>
+                            <Text text="{Seatsmax}"  />
+                        </t:template>
+                    </t:Column>
+
+                     <t:Column >
+                        <Label text="Seatsocc"/>
+                        <t:template>
+                            <Text text="{Seatsocc}"  />
+                        </t:template>
+                    </t:Column>
+                </t:columns>
+            </t:Table>
+            </VBox>
+           <VBox>
+            <viz:VizFrame id="idLineChart" width="50%" height="500px" vizType="stacked_column"
+                          uiConfig="{'applicationSet' : 'fiori'}"
+                          vizProperties="{
+                            'title' : { 'visible' : true, 'text' : '예약 현황' },
+                            'legendGroup' : { layout : {position : 'left'} },
+                            'plotArea' : { drawingEffect: 'glossy', colorPalette: ['#FF5E00','#368AFF'], dataLabel : { 'visible' : true  }}
+                          }">
+
+                <viz:dataset> <!-- 데이터 세팅-->
+                    <viz.data:FlattenedDataset data="{/carrierSet}">
+                        <viz.data:dimensions> <!-- X축 -->
+                            <viz.data:DimensionDefinition name="항공편 번호" value="{Connid}"/>
+                            
+                        </viz.data:dimensions> 
+
+                        <viz.data:measures>  <!--Y축-->
+                            <viz.data:MeasureDefinition name="총 좌석" value="{Seatsmax}" />
+                            <viz.data:MeasureDefinition name="에약좌석" value="{Seatsocc}" />
+
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds> <!-- 차트 관련 UI 설정 -->
+                <!--bar : categoryAxis & valueAxis > pie : color & size-->
+                    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="항공편 번호" /> <!--x축-->
+                    <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="총 좌석" /> <!--y축1-->
+                    <viz.feeds:FeedItem uid="valueAxis" type="Measure" values="에약좌석" /> <!--values="숫자,숫자2" 도 가능-->
+                </viz:feeds>
+
+            </viz:VizFrame>   
+          </VBox>
+
+       <endButton>
+                <Button text="Close" press="onClose" />
+            </endButton> 
+    </Dialog>
+</c:FragmentDefinition>

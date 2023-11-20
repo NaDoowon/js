@@ -1,0 +1,123 @@
+<mvc:View 
+    controllerName="zpjtb0710.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    	xmlns="sap.uxap"
+	xmlns:m="sap.m"
+    xmlns:t="sap.ui.table">
+    	<ObjectPageLayout id="ObjectPageLayout" upperCaseAnchorBar="false" useIconTabBar="true">
+		<headerTitle>
+			<ObjectPageHeader objectTitle=" Na Doo Won">
+			</ObjectPageHeader>
+		</headerTitle>
+
+		<headerContent>
+			<!-- <m:ObjectAttribute title="" text="This example explains the rules for the rendering of sections"/> -->
+            <m:Input id="idInput1" showValueHelp="true" valueHelpRequest="onValueHelp"/>
+            <m:Image id="idImage" width="200px"></m:Image>
+             <!--*src="../image/wantgohome.jpg"-->
+		</headerContent>
+
+		<sections>
+			
+			<ObjectPageSection titleUppercase="false" title="Section 5">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+                            
+							<t:Table rows="{/SBOOKSet}" selectionMode="Single" selectionBehavior="RowOnly" paste="onPaste" ariaLabelledBy="title">
+                                <t:extension>
+                                    <m:OverflowToolbar style="Clear">
+                                        <m:Title id="title" text="SBOOK"/>
+                                    </m:OverflowToolbar>
+                                </t:extension>
+                                <t:columns>
+                                    <t:Column>
+                                        <m:Label text="Carrid" />
+                                        <t:template>
+                                            <m:Text text="{Carrid}"/>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column>
+                                        <m:Label text="Connid" />
+                                        <t:template>
+                                            <m:Text text="{Connid}"/>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column>
+                                        <m:Label text="Fldate" />
+                                        <t:template>
+                                            <m:Text text="{Fldate}"/>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column>
+                                        <m:Label text="Bookid" />
+                                        <t:template>
+                                            <m:Text text="{Bookid}"/>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column>
+                                        <m:Label text="Customid" />
+                                        <t:template>
+                                            <m:Text text="{Customid}"/>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column>
+                                        <m:Label text="Custtype" />
+                                        <t:template>
+                                            <m:Text text="{Custtype}"/>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column>
+                                        <m:Label text="Smoker" />
+                                        <t:template>
+                                            <m:Text text="{Smoker}"/>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column>
+                                        <m:Label text="Luggweight" />
+                                        <t:template>
+                                            <m:Text text="{Luggweight}"/>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column>
+                                        <m:Label text="Wunit" />
+                                        <t:template>
+                                            <m:Text text="{Wunit}"/>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column>
+                                        <m:Label text="Invoice" />
+                                        <t:template>
+                                            <m:Text text="{Invoice}"/>
+                                        </t:template>
+                                    </t:Column>
+                                    <t:Column>
+                                        <m:Label text="Class" />
+                                        <t:template>
+                                            <m:Text text="{Class}"/>
+                                        </t:template>
+                                    </t:Column>
+
+                                </t:columns>
+                            </t:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+            
+            <ObjectPageSection titleUppercase="false" title="TAB2">
+				<subSections>
+					<ObjectPageSubSection titleUppercase="false">
+						<blocks>
+							<m:Text text="test"></m:Text>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+
+
+		</sections>
+
+	</ObjectPageLayout>
+</mvc:View>

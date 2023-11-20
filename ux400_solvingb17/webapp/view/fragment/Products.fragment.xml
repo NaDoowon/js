@@ -1,0 +1,95 @@
+<c:FragmentDefinition 
+    xmlns:c = "sap.ui.core"
+    xmlns:t = "sap.ui.table"
+    xmlns = "sap.m">
+
+    <Dialog id="idDialog"
+            title="Products"
+            contentHeight="50%"
+            contentWidth="100%">
+            <content>        <Table id="idProductsTable"
+                sticky="HeaderToolbar,ColumnHeaders"
+                inset="false"
+                items="{/Products}"
+               class="sapFDynamicPageAlignContent"
+               width="auto">
+            <headerToolbar>
+                <Toolbar>
+                    <Title text="Products" level="H2"/>
+                </Toolbar>
+            </headerToolbar>
+            <columns>
+                <Column
+                        width="12em">
+                    <Text text="Product ID" />
+                </Column>
+                <Column
+                        width="12em">
+                    <Text text="Product Name" />
+                </Column>
+                <Column
+                        width="12em">
+                    <Text text="Supplier ID" />
+                </Column>
+                <Column
+                        width="12em">
+                    <Text text="Category ID" />
+                </Column>
+                <Column
+                        width="12em">
+                    <Text text="Quantity Per Unit" />
+                </Column>
+                <Column
+                        width="12em">
+                    <Text text="Unit Price" />
+                </Column>
+                <Column
+                        width="12em">
+                    <Text text="Units In Stock" />
+                </Column>
+                <Column
+                        width="12em">
+                    <Text text="Units On Order" />
+                </Column>
+                <Column
+                        width="12em">
+                    <Text text="Reorder Level" />
+                </Column>
+                <Column
+                        width="12em">
+                    <Text text="Discontinued" />
+                </Column>
+                <Column
+                        width="12em">
+                    <Text text="Status" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{ProductID}" />
+                        <Text text="{ProductName}" />
+                        <Text text="{SupplierID}" />
+                        <Text text="{CategoryID}" />
+                        <Text text="{QuantityPerUnit}" />
+                        <Text text="{UnitPrice}" />
+                        <Text text="{UnitsInStock}" />
+                        <Text text="{UnitsOnOrder}" />
+                        <Text text="{ReorderLevel}" />
+                        <!-- <Text text="{Discontinued}" /> -->
+                        <Text text="{
+                            path: 'Discontinued',
+                            formatter: '.formatter.transformDiscontinued'
+                        }" />
+                        <c:Icon src="{= ${UnitPrice} >= 15 ? 'sap-icon://thumb-up' : 'sap-icon://thumb-down'}" 
+                                color="{= ${UnitPrice} >= 15 ? 'rgb(27, 234, 33)' : 'rgb(234, 52, 27)'}"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+            </content>
+            <endButton>
+                <Button text="Close" press="onClose"/>
+            </endButton>
+    </Dialog>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+</c:FragmentDefinition>

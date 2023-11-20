@@ -1,0 +1,81 @@
+sap.ui.define(
+  [
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/model/FilterOperator",
+    "sap/ui/model/Filter",
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/core/Fragment",
+  ],
+  /**
+   * @param {typeof sap.ui.core.mvc.Controller} Controller
+   */
+  function (Controller, JSONModel, Filter, FilterOperator, Fragment) {
+    "use strict";
+
+    return Controller.extend("exam.exprogramb07.controller.Main", {
+      onInit: function () {
+        let oData = {
+          list: [{ type: "USD" }, { type: "EUR" }, { type: "KRW" }],
+        };
+        let oModel = new sap.ui.model.json.JSONModel(oData);
+        this.getView().setModel(oModel, "typeList");
+      },
+      onSearch: function () {
+        let oTable = this.getView().byId("idTable");
+        let oSel = this.getView().byId("idCombo").getValue();
+        let oInput = this.getView().byId("idCarrname").getValue();
+        let aFilters = [];
+        if (oSel) {
+          aFilters.push(
+            new Filter({
+              path: "Currcode",
+              operator: "EQ",
+              value1: oSel,
+            })
+          );
+        }
+        if (oInput) {
+          aFilters.push(
+            new Filter({
+              path: "Carrname",
+              operator: "Contains",
+              value1: oInput,
+            })
+          );
+        }
+
+        if (!oSel && !oInput) {
+          oTable.getBinding("items").filter();
+        } else {
+          oTable.getBinding("items").filter(aFilters);
+        }
+      },
+
+      onClick: function (oEvent) {
+        var oDialog = sap.ui.getCore().byId("idDialog");
+        var oModel = this.getView().getModel();
+        var oCarrid = this.getView().byId("idTable");
+
+        if (oDialog) {
+          oDialog.open();
+        } else {
+          Fragment.load({
+            name: "exam.exprogramb07.view.fragment.Products",
+            type: "XML",
+            controller: this,
+          }).then(function (oDialog) {
+            oDialog.setModel(oModel);
+            oDialog.open();
+          });
+        }
+      },
+
+      onClose: function (oEvent) {
+        sap.ui.getCore().byId("idDialog");
+        var oButton = oEvent.getSource();
+        var oDialog = oButton.getParent();
+        oDialog.close();
+      },
+    });
+  }
+);

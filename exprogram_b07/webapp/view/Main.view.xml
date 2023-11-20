@@ -1,0 +1,83 @@
+<mvc:View controllerName="exam.exprogramb07.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:t="sap.ui.table"
+    xmlns:fb="sap.ui.comp.filterbar">
+    <Page id="page" title="{i18n>title}">
+        <content >
+    <HBox >
+    <VBox width="30%">
+                                        <Label text="Currency Code" labelFor="idCombo" />
+                                        <ComboBox 
+					                             id="idCombo"
+						                        items="{typeList>/list}">
+					                            <core:ListItem key="{typeList>type}" text="{typeList>type}"/>
+				                        </ComboBox>  
+                           
+                            <Label text="Carrier Name" labelFor="idCarrname" />
+                            <Input id="idCarrname" 	class="sapUiSmallMarginBottom"></Input>
+                            <Button id="Button" text="Search" type="Emphasized" press="onSearch"></Button>     
+                            
+            
+        </VBox>
+        <VBox width="80%">
+         <Table id="idTable" inset="true" 
+                items="{
+                    path: '/carrierSet',
+                    parameters: {
+                        'expand' : 'to_Item'
+                    }
+                    }" >
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <content>
+                            <Title text="Carrier List" level="H2"/>
+                            <ToolbarSpacer />
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column width="12em">
+                        <Text text="Carrid" />
+                    </Column>
+                    <Column width="12em">
+                        <Text text="Carrname" />
+                    </Column>
+                    <Column width="12em">
+                        <Text text="Currcode" />
+                    </Column>
+                    <Column width="12em">
+                        <Text text="Url" />
+                    </Column>
+                     <Column width="12em">
+                        <Text text="Length" />
+                    </Column>
+                      <Column width="12em">
+                        <Text text="Detail" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem vAlign="Middle">
+                        <cells>
+                            <Text text="{Carrid}" />
+                            <Text text="{Carrname}" />
+                            <Text text="{Currcode}" />
+                            <Text text="{Url}" /> 
+                            <Text text= "{=${to_Item}.length}" />
+                            <Button text= "예약현황" 
+                                    enabled= "{=${to_Item}.length === 0 ? false : true}"
+                                    press="onClick"
+                                     />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </VBox>
+        </HBox>   
+                    
+        
+        </content >
+    </Page>
+</mvc:View>
